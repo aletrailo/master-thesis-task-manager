@@ -1,0 +1,41 @@
+<script setup>
+defineProps({
+  zadatak: {
+    type: Object,
+    required: true,
+  },
+})
+</script>
+
+<template>
+  <div class="card h-100 shadow-sm">
+    <div class="card-body d-flex flex-column">
+      <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+        <h2 class="h5 card-title mb-0">
+          {{ zadatak.naziv }}
+        </h2>
+
+        <span
+          class="badge"
+          :class="{
+            'text-bg-primary': zadatak.status === 'aktivan',
+            'text-bg-success': zadatak.status === 'zavrsen',
+          }"
+        >
+          {{ zadatak.status === 'aktivan' ? 'Aktivan' : 'Završen' }}
+        </span>
+      </div>
+
+      <p class="card-text text-muted flex-grow-1">
+        {{ zadatak.opis }}
+      </p>
+
+      <RouterLink
+        :to="{ name: 'detalji-zadatka', params: { id: zadatak.id } }"
+        class="btn btn-outline-primary align-self-start"
+      >
+        Detalji
+      </RouterLink>
+    </div>
+  </div>
+</template>
