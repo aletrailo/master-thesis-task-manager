@@ -7,3 +7,12 @@ import Navigacija from '@/components/Navigacija.vue'
 
   <RouterView />
 </template>
+
+<style>
+html,
+body,
+#app {
+  min-height: 100%;
+  background-color: #f5f5f3;
+}
+</style>

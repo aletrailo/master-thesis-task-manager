@@ -59,7 +59,7 @@ function odjaviSe() {
             <RouterLink
               to="/"
               class="nav-link"
-              exact-active-class="active"
+              exact-active-class="active text-warning"
               @click="zatvoriMeni"
             >
               Početna
@@ -70,7 +70,7 @@ function odjaviSe() {
             <RouterLink
               to="/zadaci"
               class="nav-link"
-              active-class="active"
+              active-class="active text-warning"
               @click="zatvoriMeni"
             >
               Zadaci

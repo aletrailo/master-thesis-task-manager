@@ -41,7 +41,7 @@ function obrisi() {
             <span
               class="badge"
               :class="{
-                'text-bg-primary': zadatak.status === 'aktivan',
+                'bg-warning-subtle text-warning-emphasis': zadatak.status === 'aktivan',
                 'text-bg-success': zadatak.status === 'zavrsen',
               }"
             >

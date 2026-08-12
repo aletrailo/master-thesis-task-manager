@@ -68,19 +68,14 @@ function prijavi() {
 <template>
   <main class="prijava container py-5">
     <div class="row justify-content-center w-100">
-      <div class="col-12 col-sm-10 col-md-7 col-lg-5 col-xl-4">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+        <div class="bg-white border rounded-4 shadow-sm p-4 p-md-5">
         <div class="mb-4">
           <h1 class="display-6 fw-semibold mb-3">Prijava</h1>
           <p class="text-muted mb-0">
             Pristupi zadacima i nastavi sa organizacijom obaveza.
           </p>
 
-          <p class="small text-muted border-bottom pb-3 mt-3 mb-0">
-            Demo pristup:
-            <strong class="text-body">korisnik@primer.rs</strong>
-            <span class="mx-1">/</span>
-            <strong class="text-body">master123</strong>
-          </p>
         </div>
 
         <form
@@ -160,6 +155,14 @@ function prijavi() {
           </button>
         </form>
 
+        <p class="small text-muted border-top pt-3 mt-4 mb-0">
+          Demo pristup:
+          <strong class="text-body">korisnik@primer.rs</strong>
+          <span class="mx-1">/</span>
+          <strong class="text-body">master123</strong>
+        </p>
+
+        </div>
       </div>
     </div>
 
