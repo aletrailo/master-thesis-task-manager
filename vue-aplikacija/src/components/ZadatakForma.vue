@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, watch } from 'vue'
+import { computed, reactive, watch } from 'vue'
 
 const props = defineProps({
   pocetniPodaci: {
@@ -16,9 +16,23 @@ const forma = reactive({
   status: 'aktivan',
 })
 
-const greske = reactive({
-  naziv: '',
-  opis: '',
+const dodirnuto = reactive({
+  naziv: false,
+  opis: false,
+})
+
+const nazivNeispravan = computed(() => {
+  return (
+    forma.naziv.length < 3 ||
+    !/\S/.test(forma.naziv)
+  )
+})
+
+const opisNeispravan = computed(() => {
+  return (
+    forma.opis.length < 5 ||
+    !/\S/.test(forma.opis)
+  )
 })
 
 watch(
@@ -34,26 +48,16 @@ watch(
 )
 
 function sacuvaj() {
-  const naziv = forma.naziv.trim()
-  const opis = forma.opis.trim()
+  dodirnuto.naziv = true
+  dodirnuto.opis = true
 
-  greske.naziv =
-    naziv.length < 3
-      ? 'Naziv mora imati najmanje 3 karaktera.'
-      : ''
-
-  greske.opis =
-    opis.length < 5
-      ? 'Opis mora imati najmanje 5 karaktera.'
-      : ''
-
-  if (greske.naziv || greske.opis) {
+  if (nazivNeispravan.value || opisNeispravan.value) {
     return
   }
 
   emit('sacuvano', {
-    naziv,
-    opis,
+    naziv: forma.naziv.trim(),
+    opis: forma.opis.trim(),
     status: forma.status,
   })
 }
@@ -69,11 +73,17 @@ function sacuvaj() {
         v-model="forma.naziv"
         type="text"
         class="form-control"
-        :class="{ 'is-invalid': greske.naziv }"
+        :class="{
+          'is-invalid': dodirnuto.naziv && nazivNeispravan,
+        }"
+        @blur="dodirnuto.naziv = true"
       />
 
-      <div v-if="greske.naziv" class="invalid-feedback">
-        {{ greske.naziv }}
+      <div
+        v-if="dodirnuto.naziv && nazivNeispravan"
+        class="invalid-feedback"
+      >
+        Naziv mora imati najmanje 3 karaktera.
       </div>
     </div>
 
@@ -85,16 +95,24 @@ function sacuvaj() {
         v-model="forma.opis"
         rows="4"
         class="form-control"
-        :class="{ 'is-invalid': greske.opis }"
+        :class="{
+          'is-invalid': dodirnuto.opis && opisNeispravan,
+        }"
+        @blur="dodirnuto.opis = true"
       ></textarea>
 
-      <div v-if="greske.opis" class="invalid-feedback">
-        {{ greske.opis }}
+      <div
+        v-if="dodirnuto.opis && opisNeispravan"
+        class="invalid-feedback"
+      >
+        Opis mora imati najmanje 5 karaktera.
       </div>
     </div>
 
     <div class="mb-4">
-      <label for="status-zadatka" class="form-label">Status</label>
+      <label for="status-zadatka" class="form-label">
+        Status
+      </label>
 
       <select
         id="status-zadatka"
@@ -111,7 +129,10 @@ function sacuvaj() {
         Sačuvaj
       </button>
 
-      <RouterLink to="/zadaci" class="btn btn-outline-secondary">
+      <RouterLink
+        to="/zadaci"
+        class="btn btn-outline-secondary"
+      >
         Odustani
       </RouterLink>
     </div>

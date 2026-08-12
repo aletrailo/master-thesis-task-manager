@@ -8,6 +8,8 @@ import { DetaljiZadatka } from './stranice/detalji-zadatka/detalji-zadatka';
 import { IzmeniZadatak } from './stranice/izmeni-zadatak/izmeni-zadatak';
 import { NijePronadjeno } from './stranice/nije-pronadjeno/nije-pronadjeno';
 
+import { autentifikacijaGuard } from './guardovi/autentifikacija-guard';
+
 export const routes: Routes = [
   {
     path: '',
@@ -19,19 +21,23 @@ export const routes: Routes = [
   },
   {
     path: 'zadaci',
-    component: Zadaci
+    component: Zadaci,
+    canActivate: [autentifikacijaGuard]
   },
   {
     path: 'zadaci/novi',
-    component: DodajZadatak
+    component: DodajZadatak,
+    canActivate: [autentifikacijaGuard]
   },
   {
     path: 'zadaci/:id/izmeni',
-    component: IzmeniZadatak
+    component: IzmeniZadatak,
+    canActivate: [autentifikacijaGuard]
   },
   {
     path: 'zadaci/:id',
-    component: DetaljiZadatka
+    component: DetaljiZadatka,
+    canActivate: [autentifikacijaGuard]
   },
   {
     path: '**',

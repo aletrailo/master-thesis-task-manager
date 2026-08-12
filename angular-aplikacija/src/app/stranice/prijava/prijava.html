@@ -1,1 +1,72 @@
-<p>prijava works!</p>
+<div class="container py-5">
+  <div class="mx-auto" style="max-width: 500px;">
+    <h1 class="mb-4">Prijava</h1>
+
+    <div class="alert alert-info">
+      <strong>Demonstracioni podaci:</strong><br>
+      korisnik@primer.rs<br>
+      master123
+    </div>
+
+    @if (greska()) {
+      <div class="alert alert-danger">
+        {{ greska() }}
+      </div>
+    }
+
+    <form [formGroup]="forma" (ngSubmit)="prijavi()" novalidate>
+      <div class="mb-3">
+        <label for="email" class="form-label">
+          E-mail
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          class="form-control"
+          formControlName="email"
+          [class.is-invalid]="
+            forma.controls.email.invalid &&
+            forma.controls.email.touched
+          "
+        >
+
+        @if (forma.controls.email.invalid && forma.controls.email.touched) {
+          <div class="invalid-feedback">
+            Unesite ispravnu e-mail adresu.
+          </div>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label for="lozinka" class="form-label">
+          Lozinka
+        </label>
+
+        <input
+          id="lozinka"
+          type="password"
+          class="form-control"
+          formControlName="lozinka"
+          [class.is-invalid]="
+            forma.controls.lozinka.invalid &&
+            forma.controls.lozinka.touched
+          "
+        >
+
+        @if (
+          forma.controls.lozinka.invalid &&
+          forma.controls.lozinka.touched
+        ) {
+          <div class="invalid-feedback">
+            Lozinka mora imati najmanje 6 karaktera.
+          </div>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Prijavi se
+      </button>
+    </form>
+  </div>
+</div>
