@@ -5,7 +5,10 @@ import { Navigacija } from './komponente/navigacija/navigacija';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navigacija],
+  imports: [
+    Navigacija,
+    RouterOutlet
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

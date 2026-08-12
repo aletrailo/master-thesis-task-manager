@@ -1,30 +1,76 @@
 @if (prijavljen()) {
-  <nav class="navbar bg-dark" data-bs-theme="dark">
-    <div class="container d-flex justify-content-between">
-      <a routerLink="/" class="navbar-brand">
+  <nav
+    class="navbar navbar-expand-lg navbar-dark bg-dark py-2"
+  >
+    <div class="container">
+      <a
+        routerLink="/"
+        class="navbar-brand fw-semibold"
+        (click)="zatvoriMeni()"
+      >
         Upravljanje zadacima
       </a>
 
-      <div class="d-flex align-items-center gap-3">
-        <a routerLink="/" class="nav-link text-light">
-          Početna
-        </a>
+      <button
+        type="button"
+        class="navbar-toggler"
+        aria-controls="glavna-navigacija"
+        aria-label="Prikaži navigaciju"
+        [attr.aria-expanded]="meniOtvoren()"
+        (click)="promeniMeni()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <a routerLink="/zadaci" class="nav-link text-light">
-          Zadaci
-        </a>
-
-        <span class="text-light small">
-          {{ email() }}
-        </span>
-
-        <button
-          type="button"
-          class="btn btn-outline-light btn-sm"
-          (click)="odjavi()"
+      <div
+        id="glavna-navigacija"
+        class="collapse navbar-collapse"
+        [class.show]="meniOtvoren()"
+      >
+        <ul
+          class="navbar-nav me-auto mb-3 mb-lg-0 ms-lg-4 gap-lg-1"
         >
-          Odjavi se
-        </button>
+          <li class="nav-item">
+            <a
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ariaCurrentWhenActive="page"
+              class="nav-link"
+              (click)="zatvoriMeni()"
+            >
+              Početna
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              routerLink="/zadaci"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              class="nav-link"
+              (click)="zatvoriMeni()"
+            >
+              Zadaci
+            </a>
+          </li>
+        </ul>
+
+        <div
+          class="d-flex flex-column flex-lg-row align-items-lg-center gap-3"
+        >
+          <span class="navbar-text small py-0">
+            {{ email() }}
+          </span>
+
+          <button
+            type="button"
+            class="btn btn-outline-light btn-sm px-3"
+            (click)="odjavi()"
+          >
+            Odjavi se
+          </button>
+        </div>
       </div>
     </div>
   </nav>
