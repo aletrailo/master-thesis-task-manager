@@ -1,1 +1,16 @@
-<p>izmeni-zadatak works!</p>
+<div class="container py-5">
+  <div class="mx-auto" style="max-width: 700px;">
+    <h1 class="mb-4">Izmeni zadatak</h1>
+
+    @if (zadatak) {
+      <app-zadatak-forma
+        [pocetniPodaci]="zadatak"
+        (sacuvano)="izmeni($event)"
+      />
+    } @else {
+      <div class="alert alert-warning">
+        Zadatak nije pronađen.
+      </div>
+    }
+  </div>
+</div>

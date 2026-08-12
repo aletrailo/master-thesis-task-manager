@@ -1,0 +1,60 @@
+<form [formGroup]="forma" (ngSubmit)="sacuvaj()" novalidate>
+  <div class="mb-3">
+    <label for="naziv" class="form-label">Naziv</label>
+
+    <input
+      id="naziv"
+      type="text"
+      class="form-control"
+      formControlName="naziv"
+      [class.is-invalid]="forma.controls.naziv.invalid && forma.controls.naziv.touched"
+    />
+
+    @if (forma.controls.naziv.invalid && forma.controls.naziv.touched) {
+      <div class="invalid-feedback">
+        Naziv mora imati najmanje 3 karaktera.
+      </div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="opis" class="form-label">Opis</label>
+
+    <textarea
+      id="opis"
+      rows="4"
+      class="form-control"
+      formControlName="opis"
+      [class.is-invalid]="forma.controls.opis.invalid && forma.controls.opis.touched"
+    ></textarea>
+
+    @if (forma.controls.opis.invalid && forma.controls.opis.touched) {
+      <div class="invalid-feedback">
+        Opis mora imati najmanje 5 karaktera.
+      </div>
+    }
+  </div>
+
+  <div class="mb-4">
+    <label for="status-zadatka" class="form-label">Status</label>
+
+    <select
+      id="status-zadatka"
+      class="form-select"
+      formControlName="status"
+    >
+      <option value="aktivan">Aktivan</option>
+      <option value="zavrsen">Završen</option>
+    </select>
+  </div>
+
+  <div class="d-flex gap-2">
+    <button type="submit" class="btn btn-primary">
+      Sačuvaj
+    </button>
+
+    <a routerLink="/zadaci" class="btn btn-outline-secondary">
+      Odustani
+    </a>
+  </div>
+</form>
