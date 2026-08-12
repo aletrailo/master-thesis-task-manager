@@ -40,6 +40,8 @@ export class Prijava {
   });
 
   prijavi(): void {
+    this.greska.set('');
+
     if (this.forma.invalid) {
       this.forma.markAllAsTouched();
       return;
@@ -53,7 +55,9 @@ export class Prijava {
     );
 
     if (!uspesno) {
-      this.greska.set('E-mail ili lozinka nisu ispravni.');
+      this.greska.set(
+        'Prijava nije uspela. Proverite e-mail i lozinku.'
+      );
       return;
     }
 

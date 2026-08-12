@@ -1,72 +1,102 @@
-<div class="container py-5">
-  <div class="mx-auto" style="max-width: 500px;">
-    <h1 class="mb-4">Prijava</h1>
+<main class="prijava container py-5">
+  <div class="row justify-content-center w-100">
+    <div class="col-12 col-sm-10 col-md-7 col-lg-5 col-xl-4">
+      <div class="mb-4">
+        <h1 class="display-6 fw-semibold mb-3">Prijava</h1>
 
-    <div class="alert alert-info">
-      <strong>Demonstracioni podaci:</strong><br>
-      korisnik@primer.rs<br>
-      master123
-    </div>
+        <p class="text-muted mb-0">
+          Pristupi zadacima i nastavi sa organizacijom obaveza.
+        </p>
 
-    @if (greska()) {
-      <div class="alert alert-danger">
-        {{ greska() }}
+        <p class="small text-muted border-bottom pb-3 mt-3 mb-0">
+          Demo pristup:
+          <strong class="text-body">korisnik&#64;primer.rs</strong>
+          <span class="mx-1">/</span>
+          <strong class="text-body">master123</strong>
+        </p>
       </div>
-    }
 
-    <form [formGroup]="forma" (ngSubmit)="prijavi()" novalidate>
-      <div class="mb-3">
-        <label for="email" class="form-label">
-          E-mail
-        </label>
+      <form
+        [formGroup]="forma"
+        (ngSubmit)="prijavi()"
+        novalidate
+      >
+        <div class="mb-3">
+          <label
+            for="email"
+            class="form-label fw-medium"
+          >
+            E-mail
+          </label>
 
-        <input
-          id="email"
-          type="email"
-          class="form-control"
-          formControlName="email"
-          [class.is-invalid]="
+          <input
+            id="email"
+            type="email"
+            class="form-control form-control-lg"
+            formControlName="email"
+            placeholder="ime@primer.rs"
+            [class.is-invalid]="
+              forma.controls.email.invalid &&
+              forma.controls.email.touched
+            "
+          >
+
+          @if (
             forma.controls.email.invalid &&
             forma.controls.email.touched
-          "
-        >
+          ) {
+            <div class="invalid-feedback">
+              Unesite ispravnu e-mail adresu.
+            </div>
+          }
+        </div>
 
-        @if (forma.controls.email.invalid && forma.controls.email.touched) {
-          <div class="invalid-feedback">
-            Unesite ispravnu e-mail adresu.
-          </div>
-        }
-      </div>
+        <div class="mb-4">
+          <label
+            for="lozinka"
+            class="form-label fw-medium"
+          >
+            Lozinka
+          </label>
 
-      <div class="mb-4">
-        <label for="lozinka" class="form-label">
-          Lozinka
-        </label>
+          <input
+            id="lozinka"
+            type="password"
+            class="form-control form-control-lg"
+            formControlName="lozinka"
+            placeholder="Unesite lozinku"
+            [class.is-invalid]="
+              forma.controls.lozinka.invalid &&
+              forma.controls.lozinka.touched
+            "
+          >
 
-        <input
-          id="lozinka"
-          type="password"
-          class="form-control"
-          formControlName="lozinka"
-          [class.is-invalid]="
+          @if (
             forma.controls.lozinka.invalid &&
             forma.controls.lozinka.touched
-          "
-        >
+          ) {
+            <div class="invalid-feedback">
+              Lozinka mora imati najmanje 6 karaktera.
+            </div>
+          }
+        </div>
 
-        @if (
-          forma.controls.lozinka.invalid &&
-          forma.controls.lozinka.touched
-        ) {
-          <div class="invalid-feedback">
-            Lozinka mora imati najmanje 6 karaktera.
-          </div>
+        @if (greska()) {
+          <p
+            class="text-danger small mb-3"
+            role="alert"
+          >
+            {{ greska() }}
+          </p>
         }
-      </div>
 
-      <button type="submit" class="btn btn-primary">
-        Prijavi se
-      </button>
-    </form>
+        <button
+          type="submit"
+          class="btn btn-primary btn-lg w-100"
+        >
+          Prijavi se
+        </button>
+      </form>
+    </div>
   </div>
-</div>
+</main>
