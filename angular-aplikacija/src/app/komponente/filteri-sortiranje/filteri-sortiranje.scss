@@ -1,0 +1,9 @@
+.pretraga {
+  max-width: 32rem;
+}
+
+@media (max-width: 991.98px) {
+  .pretraga {
+    max-width: none;
+  }
+}

@@ -6,11 +6,9 @@
       </h2>
 
       <span
-        class="badge"
-        [class.bg-warning-subtle]="zadatak().status === 'aktivan'"
-        [class.text-warning-emphasis]="zadatak().status === 'aktivan'"
-        [class.bg-success-subtle]="zadatak().status === 'zavrsen'"
-        [class.text-success-emphasis]="zadatak().status === 'zavrsen'"
+        class="d-inline-block rounded-pill px-3 py-1 small fw-normal"
+        [class.text-bg-warning]="zadatak().status === 'aktivan'"
+        [class.text-bg-success]="zadatak().status === 'zavrsen'"
       >
         {{ zadatak().status === 'aktivan' ? 'Aktivan' : 'Završen' }}
       </span>

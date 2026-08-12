@@ -1,8 +1,5 @@
 import { Component, input, output } from '@angular/core';
 
-import { StatusZadatka } from '../../modeli/zadatak';
-
-export type FilterStatusa = 'svi' | StatusZadatka;
 export type SortiranjeZadataka = 'naziv-asc' | 'naziv-desc';
 
 @Component({
@@ -11,18 +8,15 @@ export type SortiranjeZadataka = 'naziv-asc' | 'naziv-desc';
   styleUrl: './filteri-sortiranje.scss'
 })
 export class FilteriSortiranje {
-  readonly status = input.required<FilterStatusa>();
+  readonly aktivniUkljuceni = input.required<boolean>();
+  readonly zavrseniUkljuceni = input.required<boolean>();
   readonly sortiranje = input.required<SortiranjeZadataka>();
   readonly pretraga = input.required<string>();
 
-  readonly statusPromenjen = output<FilterStatusa>();
+  readonly aktivniPromenjeni = output<boolean>();
+  readonly zavrseniPromenjeni = output<boolean>();
   readonly sortiranjePromenjeno = output<SortiranjeZadataka>();
   readonly pretragaPromenjena = output<string>();
-
-  promeniStatus(event: Event): void {
-    const vrednost = (event.target as HTMLSelectElement).value as FilterStatusa;
-    this.statusPromenjen.emit(vrednost);
-  }
 
   promeniSortiranje(event: Event): void {
     const vrednost = (event.target as HTMLSelectElement).value as SortiranjeZadataka;

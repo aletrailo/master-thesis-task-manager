@@ -11,10 +11,12 @@
   </div>
 
   <app-filteri-sortiranje
-    [status]="status()"
+    [aktivniUkljuceni]="aktivniUkljuceni()"
+    [zavrseniUkljuceni]="zavrseniUkljuceni()"
     [sortiranje]="sortiranje()"
     [pretraga]="pretraga()"
-    (statusPromenjen)="status.set($event)"
+    (aktivniPromenjeni)="aktivniUkljuceni.set($event)"
+    (zavrseniPromenjeni)="zavrseniUkljuceni.set($event)"
     (sortiranjePromenjeno)="sortiranje.set($event)"
     (pretragaPromenjena)="pretraga.set($event)"
     />
@@ -26,7 +28,7 @@
       </div>
     } @empty {
       <div class="col-12">
-        <div class="alert alert-info mb-0">
+        <div class="border-top py-3 text-muted">
           Nema zadataka koji odgovaraju izabranim kriterijumima.
         </div>
       </div>

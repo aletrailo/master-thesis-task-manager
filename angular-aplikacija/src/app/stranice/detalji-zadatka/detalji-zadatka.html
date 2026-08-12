@@ -1,62 +1,50 @@
 <div class="container py-5">
   <div class="mx-auto" style="max-width: 700px;">
     @if (zadatak; as trenutniZadatak) {
-      <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
-        <div>
-          <h1 class="mb-2">{{ trenutniZadatak.naziv }}</h1>
+      <article class="card border shadow-sm rounded-4 overflow-hidden">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center gap-3 p-4">
+          <h1 class="h2 mb-0">{{ trenutniZadatak.naziv }}</h1>
 
           <span
-            class="badge"
-            [class.bg-warning-subtle]="trenutniZadatak.status === 'aktivan'"
-            [class.text-warning-emphasis]="trenutniZadatak.status === 'aktivan'"
+            class="d-inline-block rounded-pill px-3 py-1 small fw-normal flex-shrink-0"
+            [class.text-bg-warning]="trenutniZadatak.status === 'aktivan'"
             [class.text-bg-success]="trenutniZadatak.status === 'zavrsen'"
           >
             {{ trenutniZadatak.status === 'aktivan' ? 'Aktivan' : 'Završen' }}
           </span>
         </div>
-      </div>
 
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h2 class="h5">Opis</h2>
-
-          <p class="mb-0">
-            {{ trenutniZadatak.opis }}
-          </p>
+        <div class="card-body p-4">
+          <h2 class="h6 text-muted text-uppercase mb-3">Opis</h2>
+          <p class="mb-0 lh-lg">{{ trenutniZadatak.opis }}</p>
         </div>
-      </div>
 
-      <div class="d-flex flex-wrap gap-2 mt-4">
-        <a
-          [routerLink]="['/zadaci', trenutniZadatak.id, 'izmeni']"
-          class="btn btn-primary"
-        >
-          Izmeni
-        </a>
+        <div class="card-footer bg-white d-flex flex-column-reverse flex-sm-row justify-content-between gap-3 p-4">
+          <a routerLink="/zadaci" class="btn btn-outline-secondary">
+            Nazad na zadatke
+          </a>
 
-        <button
-          type="button"
-          class="btn btn-outline-danger"
-          (click)="obrisi()"
-        >
-          Obriši
-        </button>
+          <div class="d-flex gap-2">
+            <a
+              [routerLink]="['/zadaci', trenutniZadatak.id, 'izmeni']"
+              class="btn btn-primary"
+            >
+              Izmeni
+            </a>
 
-        <a
-          routerLink="/zadaci"
-          class="btn btn-outline-secondary"
-        >
-          Nazad na zadatke
-        </a>
-      </div>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="obrisi()"
+            >
+              Obriši
+            </button>
+          </div>
+        </div>
+      </article>
     } @else {
-      <div class="alert alert-warning">
-        Zadatak nije pronađen.
-      </div>
-
-      <a routerLink="/zadaci" class="btn btn-outline-secondary">
-        Nazad na zadatke
-      </a>
+      <div class="alert alert-warning">Zadatak nije pronađen.</div>
+      <a routerLink="/zadaci" class="btn btn-outline-secondary">Nazad na zadatke</a>
     }
   </div>
 </div>

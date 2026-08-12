@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 
 import {
   FilteriSortiranje,
-  FilterStatusa,
   SortiranjeZadataka
 } from '../../komponente/filteri-sortiranje/filteri-sortiranje';
 import { ZadatakKartica } from '../../komponente/zadatak-kartica/zadatak-kartica';
@@ -24,22 +23,21 @@ export class Zadaci {
 
   readonly zadaci = this.servisZadataka.zadaci;
 
-  readonly status = signal<FilterStatusa>('svi');
+  readonly aktivniUkljuceni = signal(true);
+  readonly zavrseniUkljuceni = signal(true);
   readonly sortiranje = signal<SortiranjeZadataka>('naziv-asc');
   readonly pretraga = signal('');
 
   readonly prikazaniZadaci = computed(() => {
-    const status = this.status();
     const sortiranje = this.sortiranje();
     const pojam = this.pretraga().trim().toLocaleLowerCase('sr');
 
     let rezultat = this.zadaci();
 
-    if (status !== 'svi') {
-      rezultat = rezultat.filter(
-        zadatak => zadatak.status === status
-      );
-    }
+    rezultat = rezultat.filter(zadatak =>
+      (zadatak.status === 'aktivan' && this.aktivniUkljuceni()) ||
+      (zadatak.status === 'zavrsen' && this.zavrseniUkljuceni())
+    );
 
     if (pojam) {
       rezultat = rezultat.filter(zadatak =>

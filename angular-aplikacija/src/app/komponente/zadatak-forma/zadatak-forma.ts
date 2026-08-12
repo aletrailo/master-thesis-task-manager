@@ -17,6 +17,7 @@ import { Zadatak } from '../../modeli/zadatak';
 export class ZadatakForma {
   private readonly formBuilder = inject(NonNullableFormBuilder);
 
+  readonly naslov = input.required<string>();
   readonly pocetniPodaci = input<Omit<Zadatak, 'id'> | null>(null);
   readonly sacuvano = output<Omit<Zadatak, 'id'>>();
 
@@ -67,5 +68,9 @@ export class ZadatakForma {
       opis: podaci.opis.trim(),
       status: podaci.status
     });
+  }
+
+  promeniStatus(status: Zadatak['status']): void {
+    this.forma.controls.status.setValue(status);
   }
 }

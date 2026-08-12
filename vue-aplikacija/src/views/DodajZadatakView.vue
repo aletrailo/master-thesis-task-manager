@@ -16,9 +16,10 @@ function dodaj(podaci) {
 <template>
   <div class="container py-5">
     <div class="mx-auto" style="max-width: 700px">
-      <h1 class="mb-4">Dodaj zadatak</h1>
-
-      <ZadatakForma @sacuvano="dodaj" />
+      <ZadatakForma
+        naslov="Dodaj zadatak"
+        @sacuvano="dodaj"
+      />
     </div>
   </div>
 </template>

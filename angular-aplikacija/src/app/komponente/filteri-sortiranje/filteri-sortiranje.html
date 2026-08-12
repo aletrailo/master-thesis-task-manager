@@ -1,9 +1,6 @@
 <div class="d-flex flex-column flex-lg-row align-items-lg-end gap-3 mb-4">
-  <div class="flex-grow-1">
-    <label for="pretraga" class="form-label small fw-semibold">
-      Pretraga
-    </label>
-
+  <div class="pretraga w-100 me-lg-auto">
+    <label for="pretraga" class="form-label small fw-semibold">Pretraga</label>
     <input
       id="pretraga"
       type="search"
@@ -15,17 +12,30 @@
   </div>
 
   <div>
-    <label for="status" class="form-label small fw-semibold">Status</label>
-    <select
-      id="status"
-      class="form-select"
-      [value]="status()"
-      (change)="promeniStatus($event)"
-    >
-      <option value="svi">Svi zadaci</option>
-      <option value="aktivan">Aktivni</option>
-      <option value="zavrsen">Završeni</option>
-    </select>
+    <span class="form-label small fw-semibold d-block">Status</span>
+    <div class="d-flex gap-2">
+      <button
+        type="button"
+        class="btn btn-sm rounded-pill px-3"
+        [class.btn-warning]="aktivniUkljuceni()"
+        [class.btn-outline-secondary]="!aktivniUkljuceni()"
+        [attr.aria-pressed]="aktivniUkljuceni()"
+        (click)="aktivniPromenjeni.emit(!aktivniUkljuceni())"
+      >
+        Aktivni
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-sm rounded-pill px-3"
+        [class.btn-success]="zavrseniUkljuceni()"
+        [class.btn-outline-secondary]="!zavrseniUkljuceni()"
+        [attr.aria-pressed]="zavrseniUkljuceni()"
+        (click)="zavrseniPromenjeni.emit(!zavrseniUkljuceni())"
+      >
+        Završeni
+      </button>
+    </div>
   </div>
 
   <div>

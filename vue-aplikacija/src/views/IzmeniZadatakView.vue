@@ -20,10 +20,9 @@ function izmeni(podaci) {
 <template>
   <div class="container py-5">
     <div class="mx-auto" style="max-width: 700px">
-      <h1 class="mb-4">Izmeni zadatak</h1>
-
       <ZadatakForma
         v-if="zadatak"
+        naslov="Izmeni zadatak"
         :pocetni-podaci="zadatak"
         @sacuvano="izmeni"
       />

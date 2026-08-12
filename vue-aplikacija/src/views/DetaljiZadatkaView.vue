@@ -32,14 +32,14 @@ function obrisi() {
   <div class="container py-5">
     <div class="mx-auto" style="max-width: 700px">
       <template v-if="zadatak">
-        <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
-          <div>
-            <h1 class="mb-2">
+        <article class="card border shadow-sm rounded-4 overflow-hidden">
+          <div class="card-header bg-white d-flex justify-content-between align-items-center gap-3 p-4">
+            <h1 class="h2 mb-0">
               {{ zadatak.naziv }}
             </h1>
 
             <span
-              class="d-inline-block rounded-pill px-3 py-1 small fw-normal"
+              class="d-inline-block rounded-pill px-3 py-1 small fw-normal flex-shrink-0"
               :class="{
                 'text-bg-warning': zadatak.status === 'aktivan',
                 'text-bg-success': zadatak.status === 'zavrsen',
@@ -48,44 +48,44 @@ function obrisi() {
               {{ zadatak.status === 'aktivan' ? 'Aktivan' : 'Završen' }}
             </span>
           </div>
-        </div>
 
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h2 class="h5">Opis</h2>
+          <div class="card-body p-4">
+            <h2 class="h6 text-muted text-uppercase mb-3">Opis</h2>
 
-            <p class="mb-0">
+            <p class="mb-0 lh-lg">
               {{ zadatak.opis }}
             </p>
           </div>
-        </div>
 
-        <div class="d-flex flex-wrap gap-2 mt-4">
-          <RouterLink
-            :to="{
-              name: 'izmeni-zadatak',
-              params: { id: zadatak.id },
-            }"
-            class="btn btn-primary"
-          >
-            Izmeni
-          </RouterLink>
+          <div class="card-footer bg-white d-flex flex-column-reverse flex-sm-row justify-content-between gap-3 p-4">
+            <RouterLink
+              to="/zadaci"
+              class="btn btn-outline-secondary"
+            >
+              Nazad na zadatke
+            </RouterLink>
 
-          <button
-            type="button"
-            class="btn btn-outline-danger"
-            @click="obrisi"
-          >
-            Obriši
-          </button>
+            <div class="d-flex gap-2">
+              <RouterLink
+                :to="{
+                  name: 'izmeni-zadatak',
+                  params: { id: zadatak.id },
+                }"
+                class="btn btn-primary"
+              >
+                Izmeni
+              </RouterLink>
 
-          <RouterLink
-            to="/zadaci"
-            class="btn btn-outline-secondary"
-          >
-            Nazad na zadatke
-          </RouterLink>
-        </div>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                @click="obrisi"
+              >
+                Obriši
+              </button>
+            </div>
+          </div>
+        </article>
       </template>
 
       <template v-else>

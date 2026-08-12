@@ -1,60 +1,76 @@
-<form [formGroup]="forma" (ngSubmit)="sacuvaj()" novalidate>
-  <div class="mb-3">
-    <label for="naziv" class="form-label">Naziv</label>
+<form
+  class="card border shadow-sm rounded-4 overflow-hidden"
+  [formGroup]="forma"
+  (ngSubmit)="sacuvaj()"
+  novalidate
+>
+  <div class="card-header bg-white p-4">
+    <h1 class="h2 mb-0">{{ naslov() }}</h1>
+  </div>
 
-    <input
-      id="naziv"
-      type="text"
-      class="form-control"
-      formControlName="naziv"
-      [class.is-invalid]="forma.controls.naziv.invalid && forma.controls.naziv.touched"
-    />
+  <div class="card-body p-4">
+    <div class="mb-3">
+      <label for="naziv" class="form-label">Naziv</label>
+      <input
+        id="naziv"
+        type="text"
+        class="form-control"
+        formControlName="naziv"
+        [class.is-invalid]="forma.controls.naziv.invalid && forma.controls.naziv.touched"
+      >
 
-    @if (forma.controls.naziv.invalid && forma.controls.naziv.touched) {
-      <div class="invalid-feedback">
-        Naziv mora imati najmanje 3 karaktera.
+      @if (forma.controls.naziv.invalid && forma.controls.naziv.touched) {
+        <div class="invalid-feedback">Naziv mora imati najmanje 3 karaktera.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="opis" class="form-label">Opis</label>
+      <textarea
+        id="opis"
+        rows="4"
+        class="form-control"
+        formControlName="opis"
+        [class.is-invalid]="forma.controls.opis.invalid && forma.controls.opis.touched"
+      ></textarea>
+
+      @if (forma.controls.opis.invalid && forma.controls.opis.touched) {
+        <div class="invalid-feedback">Opis mora imati najmanje 5 karaktera.</div>
+      }
+    </div>
+
+    <div>
+      <span class="form-label d-block">Status</span>
+      <div class="d-flex gap-2" role="radiogroup" aria-label="Status zadatka">
+        <button
+          type="button"
+          class="btn rounded-pill px-3"
+          [class.btn-warning]="forma.controls.status.value === 'aktivan'"
+          [class.btn-outline-secondary]="forma.controls.status.value !== 'aktivan'"
+          role="radio"
+          [attr.aria-checked]="forma.controls.status.value === 'aktivan'"
+          (click)="promeniStatus('aktivan')"
+        >
+          Aktivan
+        </button>
+
+        <button
+          type="button"
+          class="btn rounded-pill px-3"
+          [class.btn-success]="forma.controls.status.value === 'zavrsen'"
+          [class.btn-outline-secondary]="forma.controls.status.value !== 'zavrsen'"
+          role="radio"
+          [attr.aria-checked]="forma.controls.status.value === 'zavrsen'"
+          (click)="promeniStatus('zavrsen')"
+        >
+          Završen
+        </button>
       </div>
-    }
+    </div>
   </div>
 
-  <div class="mb-3">
-    <label for="opis" class="form-label">Opis</label>
-
-    <textarea
-      id="opis"
-      rows="4"
-      class="form-control"
-      formControlName="opis"
-      [class.is-invalid]="forma.controls.opis.invalid && forma.controls.opis.touched"
-    ></textarea>
-
-    @if (forma.controls.opis.invalid && forma.controls.opis.touched) {
-      <div class="invalid-feedback">
-        Opis mora imati najmanje 5 karaktera.
-      </div>
-    }
-  </div>
-
-  <div class="mb-4">
-    <label for="status-zadatka" class="form-label">Status</label>
-
-    <select
-      id="status-zadatka"
-      class="form-select"
-      formControlName="status"
-    >
-      <option value="aktivan">Aktivan</option>
-      <option value="zavrsen">Završen</option>
-    </select>
-  </div>
-
-  <div class="d-flex gap-2">
-    <button type="submit" class="btn btn-primary">
-      Sačuvaj
-    </button>
-
-    <a routerLink="/zadaci" class="btn btn-outline-secondary">
-      Odustani
-    </a>
+  <div class="card-footer bg-white d-flex justify-content-between gap-3 p-4">
+    <a routerLink="/zadaci" class="btn btn-outline-secondary">Odustani</a>
+    <button type="submit" class="btn btn-primary">Sačuvaj</button>
   </div>
 </form>
