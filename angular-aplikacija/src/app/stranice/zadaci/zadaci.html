@@ -7,8 +7,15 @@
     </a>
   </div>
 
+  <app-filteri-sortiranje
+    [status]="status()"
+    [sortiranje]="sortiranje()"
+    (statusPromenjen)="status.set($event)"
+    (sortiranjePromenjeno)="sortiranje.set($event)"
+    />
+
   <div class="row g-4">
-    @for (zadatak of zadaci(); track zadatak.id) {
+    @for (zadatak of prikazaniZadaci(); track zadatak.id) {
       <div class="col-12 col-md-6">
         <app-zadatak-kartica [zadatak]="zadatak" />
       </div>

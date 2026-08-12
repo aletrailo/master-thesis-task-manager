@@ -1,0 +1,30 @@
+<div class="row g-3 mb-4">
+  <div class="col-12 col-md-6">
+    <label for="status" class="form-label">Status</label>
+
+    <select
+      id="status"
+      class="form-select"
+      [value]="status()"
+      (change)="promeniStatus($event)"
+    >
+      <option value="svi">Svi zadaci</option>
+      <option value="aktivan">Aktivni</option>
+      <option value="zavrsen">Završeni</option>
+    </select>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <label for="sortiranje" class="form-label">Sortiranje</label>
+
+    <select
+      id="sortiranje"
+      class="form-select"
+      [value]="sortiranje()"
+      (change)="promeniSortiranje($event)"
+    >
+      <option value="naziv-asc">Naziv A–Z</option>
+      <option value="naziv-desc">Naziv Z–A</option>
+    </select>
+  </div>
+</div>

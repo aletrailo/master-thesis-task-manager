@@ -1,8 +1,38 @@
 <script setup>
+import { computed, ref } from 'vue'
+
+import FilteriSortiranje from '@/components/FilteriSortiranje.vue'
 import ZadatakKartica from '@/components/ZadatakKartica.vue'
 import { useZadaciStore } from '@/stores/zadaci'
 
 const zadaciStore = useZadaciStore()
+
+const status = ref('svi')
+const sortiranje = ref('naziv-asc')
+
+const prikazaniZadaci = computed(() => {
+  let rezultat = zadaciStore.zadaci
+
+  if (status.value !== 'svi') {
+    rezultat = rezultat.filter(
+      (zadatak) => zadatak.status === status.value,
+    )
+  }
+
+  return [...rezultat].sort((a, b) =>
+    sortiranje.value === 'naziv-asc'
+      ? a.naziv.localeCompare(b.naziv, 'sr')
+      : b.naziv.localeCompare(a.naziv, 'sr'),
+  )
+})
+
+function promeniStatus(noviStatus) {
+  status.value = noviStatus
+}
+
+function promeniSortiranje(novoSortiranje) {
+  sortiranje.value = novoSortiranje
+}
 </script>
 
 <template>
@@ -15,9 +45,16 @@ const zadaciStore = useZadaciStore()
       </RouterLink>
     </div>
 
-    <div v-if="zadaciStore.zadaci.length" class="row g-4">
+    <FilteriSortiranje
+      :status="status"
+      :sortiranje="sortiranje"
+      @status-promenjen="promeniStatus"
+      @sortiranje-promenjeno="promeniSortiranje"
+    />
+
+    <div v-if="prikazaniZadaci.length" class="row g-4">
       <div
-        v-for="zadatak in zadaciStore.zadaci"
+        v-for="zadatak in prikazaniZadaci"
         :key="zadatak.id"
         class="col-12 col-md-6"
       >
