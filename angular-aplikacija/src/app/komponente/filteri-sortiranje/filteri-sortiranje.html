@@ -1,7 +1,21 @@
-<div class="row g-3 mb-4">
-  <div class="col-12 col-md-6">
-    <label for="status" class="form-label">Status</label>
+<div class="d-flex flex-column flex-lg-row align-items-lg-end gap-3 mb-4">
+  <div class="flex-grow-1">
+    <label for="pretraga" class="form-label small fw-semibold">
+      Pretraga
+    </label>
 
+    <input
+      id="pretraga"
+      type="search"
+      class="form-control"
+      placeholder="Pretraži zadatke..."
+      [value]="pretraga()"
+      (input)="promeniPretragu($event)"
+    >
+  </div>
+
+  <div>
+    <label for="status" class="form-label small fw-semibold">Status</label>
     <select
       id="status"
       class="form-select"
@@ -14,9 +28,8 @@
     </select>
   </div>
 
-  <div class="col-12 col-md-6">
-    <label for="sortiranje" class="form-label">Sortiranje</label>
-
+  <div>
+    <label for="sortiranje" class="form-label small fw-semibold">Sortiranje</label>
     <select
       id="sortiranje"
       class="form-select"

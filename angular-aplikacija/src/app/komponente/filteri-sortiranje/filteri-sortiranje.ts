@@ -13,9 +13,11 @@ export type SortiranjeZadataka = 'naziv-asc' | 'naziv-desc';
 export class FilteriSortiranje {
   readonly status = input.required<FilterStatusa>();
   readonly sortiranje = input.required<SortiranjeZadataka>();
+  readonly pretraga = input.required<string>();
 
   readonly statusPromenjen = output<FilterStatusa>();
   readonly sortiranjePromenjeno = output<SortiranjeZadataka>();
+  readonly pretragaPromenjena = output<string>();
 
   promeniStatus(event: Event): void {
     const vrednost = (event.target as HTMLSelectElement).value as FilterStatusa;
@@ -25,5 +27,10 @@ export class FilteriSortiranje {
   promeniSortiranje(event: Event): void {
     const vrednost = (event.target as HTMLSelectElement).value as SortiranjeZadataka;
     this.sortiranjePromenjeno.emit(vrednost);
+  }
+
+  promeniPretragu(event: Event): void {
+    const vrednost = (event.target as HTMLInputElement).value;
+    this.pretragaPromenjena.emit(vrednost);
   }
 }

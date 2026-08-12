@@ -13,10 +13,10 @@ defineProps({
         </h2>
 
         <span
-          class="badge"
+          class="d-inline-block rounded-pill px-3 py-1 small fw-normal"
           :class="{
-            'bg-warning-subtle text-warning-emphasis': zadatak.status === 'aktivan',
-            'bg-success-subtle text-success-emphasis': zadatak.status === 'zavrsen',
+            'text-bg-warning': zadatak.status === 'aktivan',
+            'text-bg-success': zadatak.status === 'zavrsen',
           }"
         >
           {{ zadatak.status === 'aktivan' ? 'Aktivan' : 'Završen' }}

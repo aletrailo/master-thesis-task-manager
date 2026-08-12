@@ -39,9 +39,9 @@ function obrisi() {
             </h1>
 
             <span
-              class="badge"
+              class="d-inline-block rounded-pill px-3 py-1 small fw-normal"
               :class="{
-                'bg-warning-subtle text-warning-emphasis': zadatak.status === 'aktivan',
+                'text-bg-warning': zadatak.status === 'aktivan',
                 'text-bg-success': zadatak.status === 'zavrsen',
               }"
             >

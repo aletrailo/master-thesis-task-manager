@@ -26,16 +26,26 @@ export class Zadaci {
 
   readonly status = signal<FilterStatusa>('svi');
   readonly sortiranje = signal<SortiranjeZadataka>('naziv-asc');
+  readonly pretraga = signal('');
 
   readonly prikazaniZadaci = computed(() => {
     const status = this.status();
     const sortiranje = this.sortiranje();
+    const pojam = this.pretraga().trim().toLocaleLowerCase('sr');
 
     let rezultat = this.zadaci();
 
     if (status !== 'svi') {
       rezultat = rezultat.filter(
         zadatak => zadatak.status === status
+      );
+    }
+
+    if (pojam) {
+      rezultat = rezultat.filter(zadatak =>
+        `${zadatak.naziv} ${zadatak.opis}`
+          .toLocaleLowerCase('sr')
+          .includes(pojam)
       );
     }
 
