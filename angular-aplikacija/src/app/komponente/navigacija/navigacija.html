@@ -34,9 +34,11 @@
             <a
               routerLink="/"
               routerLinkActive="active"
+              #pocetnaAktivna="routerLinkActive"
               [routerLinkActiveOptions]="{ exact: true }"
               ariaCurrentWhenActive="page"
               class="nav-link"
+              [class.text-warning]="pocetnaAktivna.isActive"
               (click)="zatvoriMeni()"
             >
               Početna
@@ -47,8 +49,10 @@
             <a
               routerLink="/zadaci"
               routerLinkActive="active"
+              #zadaciAktivni="routerLinkActive"
               ariaCurrentWhenActive="page"
               class="nav-link"
+              [class.text-warning]="zadaciAktivni.isActive"
               (click)="zatvoriMeni()"
             >
               Zadaci

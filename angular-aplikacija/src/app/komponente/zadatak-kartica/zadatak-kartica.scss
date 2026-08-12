@@ -1,0 +1,25 @@
+.zadatak-kartica {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.zadatak-kartica:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.75rem 1.5rem rgb(33 37 41 / 10%) !important;
+}
+
+.detalji-link span {
+  display: inline-block;
+  margin-left: 0.25rem;
+  transition: transform 200ms ease;
+}
+
+.detalji-link:hover span {
+  transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zadatak-kartica,
+  .detalji-link span {
+    transition: none;
+  }
+}
