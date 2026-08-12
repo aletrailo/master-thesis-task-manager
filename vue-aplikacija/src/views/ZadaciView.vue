@@ -1,3 +1,3 @@
 <template>
-  <RouterView />
+  <h1>Zadaci</h1>
 </template>

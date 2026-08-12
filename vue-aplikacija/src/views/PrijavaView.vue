@@ -1,3 +1,3 @@
 <template>
-  <RouterView />
+  <h1>Prijava</h1>
 </template>

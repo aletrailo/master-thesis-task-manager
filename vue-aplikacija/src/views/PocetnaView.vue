@@ -1,3 +1,3 @@
 <template>
-  <RouterView />
+  <h1>Početna</h1>
 </template>
