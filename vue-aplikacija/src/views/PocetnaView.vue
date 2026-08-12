@@ -1,5 +1,14 @@
+<script setup>
+import { useAutentifikacijaStore } from '@/stores/autentifikacija'
+
+const autentifikacijaStore = useAutentifikacijaStore()
+</script>
+
 <template>
-  <main class="pocetna container">
+  <main
+    class="pocetna container"
+    :class="{ 'sa-navigacijom': autentifikacijaStore.prijavljen }"
+  >
     <div class="sadrzaj mx-auto">
       <h1 class="display-5 fw-semibold mb-3">Sve obaveze na jednom mestu</h1>
 
@@ -21,9 +30,13 @@
 
 <style scoped>
 .pocetna {
-  min-height: calc(100vh - 56px);
+  min-height: 100vh;
   display: grid;
   place-items: center;
+}
+
+.pocetna.sa-navigacijom {
+  min-height: calc(100vh - 56px);
 }
 
 .sadrzaj {

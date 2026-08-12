@@ -26,11 +26,11 @@ const dodirnuto = reactive({
 })
 
 const nazivNeispravan = computed(() =>
-  forma.naziv.length < 3 || !/\S/.test(forma.naziv),
+  forma.naziv.trim().length < 3,
 )
 
 const opisNeispravan = computed(() =>
-  forma.opis.length < 5 || !/\S/.test(forma.opis),
+  forma.opis.trim().length < 5,
 )
 
 watch(

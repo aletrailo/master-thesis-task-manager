@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import { useAutentifikacijaStore } from '@/stores/autentifikacija'
 
 const router = useRouter()
+const route = useRoute()
 const autentifikacijaStore = useAutentifikacijaStore()
 
 const meniOtvoren = ref(false)
@@ -70,7 +71,11 @@ function odjaviSe() {
             <RouterLink
               to="/zadaci"
               class="nav-link"
-              active-class="active text-warning"
+              :class="{
+                'active text-warning':
+                  route.path === '/zadaci' ||
+                  route.path.startsWith('/zadaci/'),
+              }"
               @click="zatvoriMeni"
             >
               Zadaci

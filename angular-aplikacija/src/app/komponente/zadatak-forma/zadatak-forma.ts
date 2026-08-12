@@ -1,12 +1,22 @@
 import { Component, effect, inject, input, output } from '@angular/core';
 import {
+  AbstractControl,
   NonNullableFormBuilder,
   ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
   Validators
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 import { Zadatak } from '../../modeli/zadatak';
+
+function minimalnaTrimovanaDuzina(duzina: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null =>
+    String(control.value).trim().length >= duzina
+      ? null
+      : { minimalnaTrimovanaDuzina: true };
+}
 
 @Component({
   selector: 'app-zadatak-forma',
@@ -26,16 +36,14 @@ export class ZadatakForma {
       '',
       [
         Validators.required,
-        Validators.minLength(3),
-        Validators.pattern(/\S/)
+        minimalnaTrimovanaDuzina(3)
       ]
     ],
     opis: [
       '',
       [
         Validators.required,
-        Validators.minLength(5),
-        Validators.pattern(/\S/)
+        minimalnaTrimovanaDuzina(5)
       ]
     ],
     status: this.formBuilder.control<Zadatak['status']>('aktivan')
