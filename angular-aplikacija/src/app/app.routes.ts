@@ -9,6 +9,7 @@ import { IzmeniZadatak } from './stranice/izmeni-zadatak/izmeni-zadatak';
 import { NijePronadjeno } from './stranice/nije-pronadjeno/nije-pronadjeno';
 
 import { autentifikacijaGuard } from './guardovi/autentifikacija-guard';
+import { neprijavljenGuard } from './guardovi/neprijavljen-guard';
 
 export const routes: Routes = [
   {
@@ -17,7 +18,8 @@ export const routes: Routes = [
   },
   {
     path: 'prijava',
-    component: Prijava
+    component: Prijava,
+    canActivate: [neprijavljenGuard]
   },
   {
     path: 'zadaci',

@@ -36,15 +36,15 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/zadaci/:id',
-      name: 'detalji-zadatka',
-      component: DetaljiZadatkaView,
-      meta: { requiresAuth: true }
-    },
-    {
       path: '/zadaci/:id/izmeni',
       name: 'izmeni-zadatak',
       component: IzmeniZadatakView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/zadaci/:id',
+      name: 'detalji-zadatka',
+      component: DetaljiZadatkaView,
       meta: { requiresAuth: true }
     },
     {
@@ -57,6 +57,15 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   const autentifikacijaStore = useAutentifikacijaStore()
+
+  if (
+    to.name === 'prijava' &&
+    autentifikacijaStore.prijavljen
+  ) {
+    return {
+      name: 'zadaci',
+    }
+  }
 
   if (
     to.meta.requiresAuth &&
