@@ -1,0 +1,35 @@
+<nav class="navbar bg-dark" data-bs-theme="dark">
+  <div class="container d-flex justify-content-between">
+    <a routerLink="/" class="navbar-brand">
+      Upravljanje zadacima
+    </a>
+
+    <div class="d-flex align-items-center gap-3">
+      <a routerLink="/" class="nav-link text-light">
+        Početna
+      </a>
+
+      @if (prijavljen()) {
+        <a routerLink="/zadaci" class="nav-link text-light">
+          Zadaci
+        </a>
+
+        <span class="text-light small">
+          {{ email() }}
+        </span>
+
+        <button
+          type="button"
+          class="btn btn-outline-light btn-sm"
+          (click)="odjavi()"
+        >
+          Odjavi se
+        </button>
+      } @else {
+        <a routerLink="/prijava" class="btn btn-outline-light btn-sm">
+          Prijava
+        </a>
+      }
+    </div>
+  </div>
+</nav>

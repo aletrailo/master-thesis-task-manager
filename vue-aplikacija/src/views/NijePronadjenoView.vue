@@ -1,3 +1,21 @@
 <template>
-  <h1>Nije pronađeno</h1>
+  <div class="container py-5">
+    <div class="text-center py-5">
+      <div class="display-1 fw-bold">
+        404
+      </div>
+
+      <h1 class="h2 mb-3">
+        Stranica nije pronađena
+      </h1>
+
+      <p class="text-muted mb-4">
+        Tražena stranica ne postoji.
+      </p>
+
+      <RouterLink to="/" class="btn btn-primary">
+        Nazad na početnu
+      </RouterLink>
+    </div>
+  </div>
 </template>
