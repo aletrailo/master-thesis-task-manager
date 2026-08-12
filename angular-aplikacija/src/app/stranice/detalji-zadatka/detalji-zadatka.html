@@ -1,1 +1,61 @@
-<p>detalji-zadatka works!</p>
+<div class="container py-5">
+  <div class="mx-auto" style="max-width: 700px;">
+    @if (zadatak; as trenutniZadatak) {
+      <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
+        <div>
+          <h1 class="mb-2">{{ trenutniZadatak.naziv }}</h1>
+
+          <span
+            class="badge"
+            [class.text-bg-primary]="trenutniZadatak.status === 'aktivan'"
+            [class.text-bg-success]="trenutniZadatak.status === 'zavrsen'"
+          >
+            {{ trenutniZadatak.status === 'aktivan' ? 'Aktivan' : 'Završen' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="h5">Opis</h2>
+
+          <p class="mb-0">
+            {{ trenutniZadatak.opis }}
+          </p>
+        </div>
+      </div>
+
+      <div class="d-flex flex-wrap gap-2 mt-4">
+        <a
+          [routerLink]="['/zadaci', trenutniZadatak.id, 'izmeni']"
+          class="btn btn-primary"
+        >
+          Izmeni
+        </a>
+
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="obrisi()"
+        >
+          Obriši
+        </button>
+
+        <a
+          routerLink="/zadaci"
+          class="btn btn-outline-secondary"
+        >
+          Nazad na zadatke
+        </a>
+      </div>
+    } @else {
+      <div class="alert alert-warning">
+        Zadatak nije pronađen.
+      </div>
+
+      <a routerLink="/zadaci" class="btn btn-outline-secondary">
+        Nazad na zadatke
+      </a>
+    }
+  </div>
+</div>

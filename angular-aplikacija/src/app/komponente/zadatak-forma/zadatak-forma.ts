@@ -45,7 +45,11 @@ export class ZadatakForma {
       const podaci = this.pocetniPodaci();
 
       if (podaci) {
-        this.forma.setValue(podaci);
+        this.forma.setValue({
+          naziv: podaci.naziv,
+          opis: podaci.opis,
+          status: podaci.status
+        });
       }
     });
   }

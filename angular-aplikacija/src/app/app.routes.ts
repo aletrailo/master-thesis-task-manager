@@ -26,12 +26,12 @@ export const routes: Routes = [
     component: DodajZadatak
   },
   {
-    path: 'zadaci/:id',
-    component: DetaljiZadatka
-  },
-  {
     path: 'zadaci/:id/izmeni',
     component: IzmeniZadatak
+  },
+  {
+    path: 'zadaci/:id',
+    component: DetaljiZadatka
   },
   {
     path: '**',
