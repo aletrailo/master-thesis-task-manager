@@ -1,17 +1,27 @@
-<div class="container py-5">
-  <div class="text-center py-5">
-    <div class="display-1 fw-bold">404</div>
+<main
+  class="nije-pronadjeno container py-5"
+  [class.sa-navigacijom]="prijavljen()"
+>
+  <div class="sadrzaj mx-auto">
+    <p class="text-primary fw-semibold mb-2">
+      Greška 404
+    </p>
 
-    <h1 class="h2 mb-3">
+    <h1 class="display-5 fw-semibold mb-3">
       Stranica nije pronađena
     </h1>
 
-    <p class="text-muted mb-4">
-      Tražena stranica ne postoji.
+    <p class="lead text-muted mb-4">
+      Stranica koju tražite ne postoji ili je premeštena.
     </p>
 
-    <a routerLink="/" class="btn btn-primary">
-      Nazad na početnu
-    </a>
+    <div class="text-end">
+      <a
+        routerLink="/"
+        class="pocetna-link link-primary text-decoration-none fw-semibold"
+      >
+        Nazad na početnu <span aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
-</div>
+</main>

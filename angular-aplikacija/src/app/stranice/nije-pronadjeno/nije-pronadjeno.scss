@@ -1,0 +1,36 @@
+.nije-pronadjeno {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.nije-pronadjeno.sa-navigacijom {
+  min-height: calc(100vh - 56px);
+}
+
+.sadrzaj {
+  width: fit-content;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    white-space: nowrap;
+  }
+}
+
+.pocetna-link span {
+  display: inline-block;
+  margin-left: 0.25rem;
+  transition: transform 200ms ease;
+}
+
+.pocetna-link:hover span {
+  transform: translateX(7px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pocetna-link span {
+    transition: none;
+  }
+}
